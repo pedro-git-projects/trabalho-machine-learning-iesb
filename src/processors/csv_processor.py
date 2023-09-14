@@ -30,10 +30,10 @@ def processar_csv(input_file: str, output_file: str) -> None:
         valid_ages = df["age"].dropna()
 
         # calcula a moda das idades
-        moda_idades = statistics.mode(valid_ages)
+        mode_ages = statistics.mode(valid_ages)
 
         # substitui as idades inválidas pela moda
-        df["age"].fillna(moda_idades, inplace=True)
+        df["age"].fillna(mode_ages, inplace=True)
 
         # salva em um arquivo
         df.to_csv(output_file, index=False)
@@ -72,12 +72,12 @@ def scatter_age_vs_fare(csv_file: str, save_path=None) -> None:
     try:
         df = pd.read_csv(csv_file)
 
-        # Create a scatter plot of age versus fare
+        # criar um gráfico de dispersão de idade x tarifa
         plt.figure(figsize=(8, 6))
         plt.scatter(df["age"], df["fare"], alpha=0.5)
         plt.xlabel("Idade")
         plt.ylabel("Tarifa")
-        plt.title("Dispersão de Idade vs. Tarifa")
+        plt.title("Dispersão de Idade X Tarifa")
 
         if save_path:
             # salva o gráfico de dispersão

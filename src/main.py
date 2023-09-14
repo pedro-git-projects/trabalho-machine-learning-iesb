@@ -12,13 +12,10 @@ def main():
     os.chdir(script_dir)
 
     processar_csv("../data/dados.csv", "../respostas/Resposta01.txt")
-
     calcular_somatorio_genero("../data/dados.csv")
-
     plot_porcentagem_sobreviventes(
         "../data/dados.csv", "../respostas/sobrevivtentes.png"
     )
-
     scatter_age_vs_fare("../data/dados.csv", "../respostas/scatter.png")
 
 
