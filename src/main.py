@@ -2,7 +2,7 @@ from processors.csv_processor import (
     calcular_somatorio_genero,
     plot_porcentagem_sobreviventes,
     processar_csv,
-    scatter_age_vs_fare,
+    plota_dispersao_idade_tarifa,
 )
 import os
 
@@ -16,7 +16,7 @@ def main():
     plot_porcentagem_sobreviventes(
         "../data/dados.csv", "../respostas/sobrevivtentes.png"
     )
-    scatter_age_vs_fare("../data/dados.csv", "../respostas/scatter.png")
+    plota_dispersao_idade_tarifa("../data/dados.csv", "../respostas/scatter.png")
 
 
 if __name__ == "__main__":

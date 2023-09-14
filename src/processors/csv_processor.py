@@ -36,6 +36,43 @@ def processar_csv(input_file: str, output_file: str) -> None:
         print(f"O arquivo {input_file} não está em formato CSV válido.")
 
 
+def calcular_somatorio_genero(csv_file: str) -> None:
+    """
+    Calcula o somatório de homens e mulheres com base nos dados de um arquivo CSV
+    e apresenta o resultado no terminal.
+
+    Args:
+        csv_file (str): O caminho para o arquivo CSV contendo os dados.
+
+    Returns:
+        None
+
+    Raises:
+        FileNotFoundError: Se o arquivo CSV especificado não for encontrado.
+        pd.errors.ParserError: Se o arquivo CSV não estiver em formato válido.
+
+    Example:
+        calcular_somatorio_genero('dados.csv')
+    """
+    try:
+        df = pd.read_csv(csv_file)
+
+        somatorio_genero = df["sex"].value_counts()
+        total_homens = somatorio_genero.get("male", 0)
+        total_mulheres = somatorio_genero.get("female", 0)
+
+        total = total_homens + total_mulheres
+
+        print(f"Total de Homens: {total_homens}")
+        print(f"Total de Mulheres: {total_mulheres}")
+        print(f"Total Geral: {total}")
+
+    except FileNotFoundError:
+        print(f"O arquivo {csv_file} não foi encontrado.")
+    except pd.errors.ParserError:
+        print(f"O arquivo {csv_file} não está em formato CSV válido.")
+
+
 def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> None:
     """
     Gera um gráfico de pizza representando a porcentagem de sobreviventes e não sobreviventes
@@ -77,7 +114,7 @@ def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> None:
         print(f"O arquivo {csv_file} não está em formato CSV válido.")
 
 
-def scatter_age_vs_fare(csv_file: str, save_path=None) -> None:
+def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> None:
     """
     Cria um gráfico de dispersão para visualizar a relação entre a idade e a tarifa
     com base nos dados de um arquivo CSV. O gráfico pode ser salvo em um arquivo ou exibido na tela.
@@ -114,43 +151,6 @@ def scatter_age_vs_fare(csv_file: str, save_path=None) -> None:
         else:
             # mostra o gráfico se nenhum caminho for especificado
             plt.show()
-
-    except FileNotFoundError:
-        print(f"O arquivo {csv_file} não foi encontrado.")
-    except pd.errors.ParserError:
-        print(f"O arquivo {csv_file} não está em formato CSV válido.")
-
-
-def calcular_somatorio_genero(csv_file: str) -> None:
-    """
-    Calcula o somatório de homens e mulheres com base nos dados de um arquivo CSV
-    e apresenta o resultado no terminal.
-
-    Args:
-        csv_file (str): O caminho para o arquivo CSV contendo os dados.
-
-    Returns:
-        None
-
-    Raises:
-        FileNotFoundError: Se o arquivo CSV especificado não for encontrado.
-        pd.errors.ParserError: Se o arquivo CSV não estiver em formato válido.
-
-    Example:
-        calcular_somatorio_genero('dados.csv')
-    """
-    try:
-        df = pd.read_csv(csv_file)
-
-        somatorio_genero = df["sex"].value_counts()
-        total_homens = somatorio_genero.get("male", 0)
-        total_mulheres = somatorio_genero.get("female", 0)
-
-        total = total_homens + total_mulheres
-
-        print(f"Total de Homens: {total_homens}")
-        print(f"Total de Mulheres: {total_mulheres}")
-        print(f"Total Geral: {total}")
 
     except FileNotFoundError:
         print(f"O arquivo {csv_file} não foi encontrado.")
