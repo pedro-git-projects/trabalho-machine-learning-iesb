@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/main.py
+src/processors/__init__.py
+src/processors/csv_processor.py
+src/tests/__init__.py
+src/tests/test_csv_processor.py
+src/trabalho_ml_iesb.egg-info/PKG-INFO
+src/trabalho_ml_iesb.egg-info/SOURCES.txt
+src/trabalho_ml_iesb.egg-info/dependency_links.txt
+src/trabalho_ml_iesb.egg-info/requires.txt
+src/trabalho_ml_iesb.egg-info/top_level.txt

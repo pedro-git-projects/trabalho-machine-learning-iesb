@@ -1,10 +1,9 @@
 import pandas as pd
 import statistics
 import matplotlib.pyplot as plt
-from pandas.errors import ParserError
 
 
-def processar_csv(input_file: str, output_file: str) -> str:
+def processar_csv(input_file: str, output_file: str) -> None:
     """
     Processa um arquivo CSV de entrada, tratando valores inválidos nas colunas 'age', calculando a moda das idades
     válidas e substituindo os valores inválidos pela moda. O resultado é salvo em um novo arquivo CSV.
@@ -30,15 +29,14 @@ def processar_csv(input_file: str, output_file: str) -> str:
         df["age"].fillna(mode_ages, inplace=True)
 
         df.to_csv(output_file, index=False)
-        return f" Arquivo CSV processado com sucesso. Saída salva em {output_file}"
 
     except FileNotFoundError:
-        return f"O arquivo {input_file} não foi encontrado."
+        print(f"O arquivo {input_file} não foi encontrado.")
     except pd.errors.ParserError:
-        return f"O arquivo {input_file} não está em formato CSV válido."
+        print(f"O arquivo {input_file} não está em formato CSV válido.")
 
 
-def calcular_somatorio_genero(csv_file: str) -> str:
+def calcular_somatorio_genero(csv_file: str) -> None:
     """
     Calcula o somatório de homens e mulheres com base nos dados de um arquivo CSV
     e apresenta o resultado no terminal.
@@ -62,20 +60,20 @@ def calcular_somatorio_genero(csv_file: str) -> str:
         somatorio_genero = df["sex"].value_counts()
         total_homens = somatorio_genero.get("male", 0)
         total_mulheres = somatorio_genero.get("female", 0)
-        if total_mulheres is None or total_homens is None:
-            raise ParserError
 
         total = total_homens + total_mulheres
 
-        return f"Total de Homens: {total_homens}\n Total de Mulheres: {total_mulheres}\n Total Geral: {total}"
+        print(f"Total de Homens: {total_homens}")
+        print(f"Total de Mulheres: {total_mulheres}")
+        print(f"Total Geral: {total}")
 
     except FileNotFoundError:
-        return f"O arquivo {csv_file} não foi encontrado."
+        print(f"O arquivo {csv_file} não foi encontrado.")
     except pd.errors.ParserError:
-        return f"O arquivo {csv_file} não está em formato CSV válido."
+        print(f"O arquivo {csv_file} não está em formato CSV válido.")
 
 
-def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> str:
+def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> None:
     """
     Gera um gráfico de pizza representando a porcentagem de sobreviventes e não sobreviventes
     com base nos dados de um arquivo CSV e salva o gráfico em um arquivo de saída.
@@ -109,15 +107,14 @@ def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> str:
         )
         plt.title("Porcentagem de Sobreviventes e Não Sobreviventes")
         plt.savefig(output_file)
-        return f"Gráfico de porcentagem de sobreviventes e não sobreviventes plotado e salvo em {output_file}"
 
     except FileNotFoundError:
-        return f"O arquivo {csv_file} não foi encontrado."
+        print(f"O arquivo {csv_file} não foi encontrado.")
     except pd.errors.ParserError:
-        return f"O arquivo {csv_file} não está em formato CSV válido."
+        print(f"O arquivo {csv_file} não está em formato CSV válido.")
 
 
-def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> str:
+def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> None:
     """
     Cria um gráfico de dispersão para visualizar a relação entre a idade e a tarifa
     com base nos dados de um arquivo CSV. O gráfico pode ser salvo em um arquivo ou exibido na tela.
@@ -154,9 +151,8 @@ def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> str:
         else:
             # mostra o gráfico se nenhum caminho for especificado
             plt.show()
-        return f"Gráfico de dispersão plotado e salvo em {save_path}"
 
     except FileNotFoundError:
-        return f"O arquivo {csv_file} não foi encontrado."
+        print(f"O arquivo {csv_file} não foi encontrado.")
     except pd.errors.ParserError:
-        return f"O arquivo {csv_file} não está em formato CSV válido."
+        print(f"O arquivo {csv_file} não está em formato CSV válido.")
