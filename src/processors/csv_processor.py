@@ -9,6 +9,9 @@ def processar_csv(input_file: str, output_file: str) -> str:
     Processa um arquivo CSV de entrada, tratando valores inválidos nas colunas 'age', calculando a moda das idades
     válidas e substituindo os valores inválidos pela moda. O resultado é salvo em um novo arquivo CSV.
 
+    Returns:
+        str: Retona uma string com a mensagem de sucesso ou erro
+
     Args:
         input_file (str): O caminho do arquivo CSV de entrada.
         output_file (str): O caminho onde o arquivo processado será salvo.
@@ -47,7 +50,8 @@ def calcular_somatorio_genero(csv_file: str) -> str:
         csv_file (str): O caminho para o arquivo CSV contendo os dados.
 
     Returns:
-        None
+        str: Retona uma string com a mensagem de sucesso ou erro
+
 
     Raises:
         FileNotFoundError: Se o arquivo CSV especificado não for encontrado.
@@ -85,7 +89,8 @@ def plot_porcentagem_sobreviventes(csv_file: str, output_file: str) -> str:
         output_file (str): O caminho para o arquivo de saída onde o gráfico será salvo.
 
     Returns:
-        None
+        str: Retona uma string com a mensagem de sucesso ou erro
+
 
     Raises:
         FileNotFoundError: Se o arquivo CSV especificado não for encontrado.
@@ -128,7 +133,8 @@ def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> str:
                                    (default is None)
 
     Returns:
-        None
+        str: Retona uma string com a mensagem de sucesso ou erro
+
 
     Raises:
         FileNotFoundError: Se o arquivo CSV especificado não for encontrado.
@@ -141,7 +147,6 @@ def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> str:
     try:
         df = pd.read_csv(csv_file)
 
-        # criar um gráfico de dispersão de idade x tarifa
         plt.figure(figsize=(8, 6))
         plt.scatter(df["age"], df["fare"], alpha=0.5)
         plt.xlabel("Idade")
@@ -149,10 +154,8 @@ def plota_dispersao_idade_tarifa(csv_file: str, save_path=None) -> str:
         plt.title("Dispersão de Idade X Tarifa")
 
         if save_path:
-            # salva o gráfico de dispersão
             plt.savefig(save_path)
         else:
-            # mostra o gráfico se nenhum caminho for especificado
             plt.show()
         return f"Gráfico de dispersão plotado e salvo em {save_path}"
 

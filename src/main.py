@@ -10,42 +10,14 @@ import os
 import pytermgui as ptg
 
 
-from argparse import ArgumentParser, Namespace
-
-
 PALETTE_LIGHT = "#FCBA03"
 PALETTE_MID = "#8C6701"
 PALETTE_DARK = "#4D4940"
 PALETTE_DARKER = "#242321"
 
 
-def _process_arguments(argv: list[str] | None = None) -> Namespace:
-    """Processes command line arguments.
-
-    Note that you don't _have to_ use the bultin argparse module for this; it
-    is just what the module uses.
-
-    Args:
-        argv: A list of command line arguments, not including the binary path
-            (sys.argv[0]).
-    """
-
-    parser = ArgumentParser(description="My first PTG application.")
-
-    return parser.parse_args(argv)
-
-
 def _create_aliases() -> None:
-    """Creates all the TIM aliases used by the application.
-
-    Aliases should generally follow the following format:
-
-        namespace.item
-
-    For example, the title color of an app named "myapp" could be something like:
-
-        myapp.title
-    """
+    """Cira todos os aliases do TIM para a aplicação."""
 
     ptg.tim.alias("app.text", "#cfc7b0")
 
@@ -60,15 +32,7 @@ def _create_aliases() -> None:
 
 
 def _configure_widgets() -> None:
-    """Defines all the global widget configurations.
-
-    Some example lines you could use here:
-
-        ptg.boxes.DOUBLE.set_chars_of(ptg.Window)
-        ptg.Splitter.set_char("separator", " ")
-        ptg.Button.styles.label = "myapp.button.label"
-        ptg.Container.styles.border__corner = "myapp.border"
-    """
+    """Define a configuração global para os widgets."""
 
     ptg.boxes.DOUBLE.set_chars_of(ptg.Window)
     ptg.boxes.ROUNDED.set_chars_of(ptg.Container)
@@ -88,26 +52,20 @@ def _configure_widgets() -> None:
 
 
 def _define_layout() -> ptg.Layout:
-    """Defines the application layout.
-
-    Layouts work based on "slots" within them. Each slot can be given dimensions for
-    both width and height. Integer values are interpreted to mean a static width, float
-    values will be used to "scale" the relevant terminal dimension, and giving nothing
-    will allow PTG to calculate the corrent dimension.
-    """
+    """Define o layout da aplicação."""
 
     layout = ptg.Layout()
 
-    # A header slot with a height of 1
+    # Um slot header com altura 1
     layout.add_slot("Header", height=1)
     layout.add_break()
 
-    # A body slot that will fill the entire width, and the height is remaining
+    # Um slot body que vai preencher toda a altura e largura restante
     layout.add_slot("Body")
 
     layout.add_break()
 
-    # A footer with a static height of 1
+    # Um footer com altura estática 1
     layout.add_slot("Footer", height=1)
 
     return layout
@@ -146,16 +104,12 @@ def _display_message_modal(manager: ptg.WindowManager, message: str):
     manager.add(modal)
 
 
-def main(argv: list[str] | None = None) -> None:
-    """Runs the application."""
-
+def main() -> None:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
 
     _create_aliases()
     _configure_widgets()
-
-    args = _process_arguments(argv)
 
     with ptg.WindowManager() as manager:
         manager.layout = _define_layout()
