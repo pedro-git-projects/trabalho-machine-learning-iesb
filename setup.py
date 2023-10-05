@@ -25,5 +25,6 @@ setup(
         "six==1.16.0",
         "trabalho-ml-iesb==1.0.0",
         "tzdata==2023.3",
+        "PyTermGUI==7.7.0",
     ],
 )
