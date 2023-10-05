@@ -24,9 +24,35 @@ Clone o repositório:
 git clone https://github.com/pedro-git-projects/trabalho-machine-learning-iesb
 ```
 
-Execute a função main:
+Inicialize um virtual venv:
+
+```
+python -m venv <venv_name>
+```
+
+Ative o venv:
+
+```
+source <venv_name>/bin/activate 
+```
+
+Instale as dependências:
 
 ```sh
+python setup.py install
+```
+
+Execute o programa com o GNU Make:
+
+```
+make run
+```
+
+Ou manualmente:
+
+```
 python src/main.py
 ```
+
+No Makefile também há receitas para gerar test e documentação.
 
